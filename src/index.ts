@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import path from "node:path";
+import { cors } from "./middlewares/cors";
 import { router } from "./router";
 import { dirnameFrom } from './utils/dirname';
 
@@ -12,6 +13,7 @@ mongoose
 
     const __dirname = dirnameFrom(import.meta.url);
 
+    app.use(cors);
     app.use(
       "/uploads",
       express.static(path.resolve(__dirname, "..", "uploads")),
